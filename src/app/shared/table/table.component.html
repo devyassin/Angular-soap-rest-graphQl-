@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h1 class="mb-4">{{ title }}</h1>
+  <button
+    *ngIf="buttonText && buttonAction"
+    class="btn btn-primary mb-3"
+    (click)="buttonAction()"
+  >
+    {{ buttonText }}
+  </button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column.header }}</th>
+        <th *ngIf="actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td *ngFor="let column of columns">{{ item[column.field] }}</td>
+        <td *ngIf="actions">
+          <button
+            *ngIf="actions.edit"
+            (click)="actions.edit(item.code)"
+            class="btn btn-sm btn-warning me-2"
+          >
+            Edit
+          </button>
+          <button
+            *ngIf="actions.delete"
+            (click)="actions.delete(item?.code ?? item?.id)"
+            class="btn btn-sm btn-danger"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,75 @@
+<form
+  (ngSubmit)="isEditMode ? updateCustomer() : addCustomer()"
+  class="container mt-4"
+>
+  <!-- <div class="mb-3">
+    <label for="customerId" class="form-label">Customer ID</label>
+    <input
+      type="number"
+      class="form-control"
+      id="customerId"
+      [(ngModel)]="newCustomer.id"
+      name="id"
+      required
+    />
+  </div> -->
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      [(ngModel)]="newCustomer.firstName"
+      name="firstName"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      [(ngModel)]="newCustomer.lastName"
+      name="lastName"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      [(ngModel)]="newCustomer.email"
+      name="email"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="phoneNumber" class="form-label">Phone Number</label>
+    <input
+      type="tel"
+      class="form-control"
+      id="phoneNumber"
+      [(ngModel)]="newCustomer.phoneNumber"
+      name="phoneNumber"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="address"
+      [(ngModel)]="newCustomer.address"
+      name="address"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">
+    {{ isEditMode ? "Modifier le client" : "Ajouter le client" }}
+  </button>
+  <button class="btn btn-secondary" routerLink="/customer">Annuler</button>
+</form>

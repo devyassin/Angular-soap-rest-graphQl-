@@ -1,0 +1,21 @@
+<p>roles works!</p>
+<h2>{{ firstName }}</h2>
+<h2>{{ age }}</h2>
+
+<div>
+  <!-- <div class="col-3">
+    <input type="text" [(ngModel)]="firstName" class="form-control" />
+  </div>
+  <button (click)="showAlert('yassine lamouadden')"></button> -->
+
+  @for (abilitie of abilities; track $index) {
+  <div>{{ abilitie.ability.name }}</div>
+  <div>{{ abilitie.slot }}</div>
+
+  }
+
+  <div *ngFor="let abilitie of abilities">
+    <li>{{ abilitie.ability.name }}</li>
+    <li>{{ abilitie.slot }}</li>
+  </div>
+</div>

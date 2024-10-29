@@ -1,0 +1,11 @@
+<app-table
+  [title]="'Customer Management'"
+  [buttonText]="'Add New Customer'"
+  [buttonAction]="goToCustomerFormPage"
+  [columns]="customerColumns"
+  [data]="customers"
+  [actions]="{
+    edit: goToEditCustomerFormPage.bind(this),
+    delete: deleteCustomer.bind(this)
+  }"
+></app-table>

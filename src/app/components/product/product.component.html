@@ -1,0 +1,11 @@
+<app-table
+  [title]="'Product Management'"
+  [buttonText]="'Add New Product'"
+  [buttonAction]="goToProductFormPage"
+  [columns]="productColumns"
+  [data]="products"
+  [actions]="{
+    edit: goToEditProductFormPage.bind(this),
+    delete: deleteProduct.bind(this)
+  }"
+></app-table>
