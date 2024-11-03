@@ -10,13 +10,12 @@ import { APOLLO_OPTIONS, Apollo } from 'apollo-angular'; // Import APOLLO_OPTION
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core'; // Apollo Client and InMemoryCache
 import { HttpLink } from 'apollo-angular/http'; // Apollo's HttpLink for connecting to GraphQL API
 import { routes } from './app.routes';
+import { environment } from '../environments/environment.development';
 
-// Define the Apollo configuration
-const uri = 'http://localhost:8060/graphql'; // <-- add the URL of the GraphQL server here
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
   const httpLink = inject(HttpLink);
   return {
-    link: httpLink.create({ uri }),
+    link: httpLink.create({ uri: environment.API_GraphQL }),
     cache: new InMemoryCache(),
   };
 }
