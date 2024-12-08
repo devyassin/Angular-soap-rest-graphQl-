@@ -8,59 +8,66 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CustomerFormComponent } from './components/customer/customer-form/customer-form.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
+// export const routes: Routes = [
+//   {
+//     path: '',
+//     redirectTo: 'master',
+//     pathMatch: 'full',
+//   },
+//   {
+//     path: 'master',
+//     component: MasterComponent,
+//   },
+//   {
+//     path: 'employee',
+//     component: EmployeeComponent,
+//   },
+//   {
+//     path: 'client',
+//     component: ClientComponent,
+//     children: [
+//       {
+//         path: 'details',
+//         component: ClientDetailsComponent,
+//       },
+//     ],
+//   },
+//   { path: 'client/:id', component: ClientDetailsComponent },
+
+//   {
+//     path: 'product',
+//     component: ProductComponent,
+//   },
+//   {
+//     path: 'product/form',
+//     component: ProductFormComponent,
+//   },
+//   {
+//     path: 'product/form/:id',
+//     component: ProductFormComponent,
+//   },
+//   {
+//     path: 'customer',
+//     component: CustomerComponent,
+//   },
+//   {
+//     path: 'customer/form',
+//     component: CustomerFormComponent,
+//   },
+//   {
+//     path: 'customer/form/:id',
+//     component: CustomerFormComponent,
+//   },
+//   {
+//     path: '**',
+//     component: ErrorComponent,
+//   },
+// ];
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'master',
-    pathMatch: 'full',
-  },
-  {
-    path: 'master',
-    component: MasterComponent,
-  },
-  {
-    path: 'employee',
-    component: EmployeeComponent,
-  },
-  {
-    path: 'client',
-    component: ClientComponent,
-    children: [
-      {
-        path: 'details',
-        component: ClientDetailsComponent,
-      },
-    ],
-  },
-  { path: 'client/:id', component: ClientDetailsComponent },
-
-  {
-    path: 'product',
-    component: ProductComponent,
-  },
-  {
-    path: 'product/form',
-    component: ProductFormComponent,
-  },
-  {
-    path: 'product/form/:id',
-    component: ProductFormComponent,
-  },
-  {
-    path: 'customer',
-    component: CustomerComponent,
-  },
-  {
-    path: 'customer/form',
-    component: CustomerFormComponent,
-  },
-  {
-    path: 'customer/form/:id',
-    component: CustomerFormComponent,
-  },
-  {
-    path: '**',
-    component: ErrorComponent,
-  },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
 ];
