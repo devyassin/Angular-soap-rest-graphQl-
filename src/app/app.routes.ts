@@ -10,6 +10,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { CustomerFormComponent } from './components/customer/customer-form/customer-form.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { LoginComponent } from './components/authentication/login/login.component';
+import { CarteNationalComponent } from './components/dashboard/carte-national/carte-national.component';
 
 // export const routes: Routes = [
 //   {
@@ -70,4 +71,5 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: 'dashboard/carte-national', component: CarteNationalComponent },
 ];

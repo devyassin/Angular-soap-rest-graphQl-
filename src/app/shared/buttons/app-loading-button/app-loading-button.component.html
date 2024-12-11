@@ -1,0 +1,6 @@
+<button [disabled]="loading || disabled" [class]="buttonClass" type="submit">
+  <div class="flex items-center justify-center">
+    <mat-spinner *ngIf="loading" [diameter]="20" class="mr-2"></mat-spinner>
+    <span>{{ loading ? loadingText : text }}</span>
+  </div>
+</button>

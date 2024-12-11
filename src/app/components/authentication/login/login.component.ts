@@ -5,8 +5,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LoadingButtonComponent } from '../../../shared/buttons/app-loading-button/app-loading-button.component';
+import { routes } from '../../../app.routes';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +21,7 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     RouterLink,
+    LoadingButtonComponent,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -27,7 +30,7 @@ export class LoginComponent {
   formData = { email: '', password: '' };
   showPassword = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
     if (!this.formData.email || !this.formData.password) {
@@ -38,7 +41,7 @@ export class LoginComponent {
     this.authService.login(this.formData).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
-        alert('Login successful!');
+        this.router.navigate(['/dashboard/carte-national']);
       },
       error: (err) => console.error('Login failed', err),
     });
