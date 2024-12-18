@@ -11,6 +11,8 @@ import { CustomerFormComponent } from './components/customer/customer-form/custo
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { CarteNationalComponent } from './components/dashboard/carte-national/carte-national.component';
+import { UploadComponent } from './components/dashboard/upload/upload.component';
+import { CardComponent } from './components/card/card.component';
 
 // export const routes: Routes = [
 //   {
@@ -72,4 +74,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'dashboard/carte-national', component: CarteNationalComponent },
+  { path: 'dashboard/upload', component: UploadComponent },
+  { path: 'dashboard/card', component: CardComponent },
 ];

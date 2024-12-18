@@ -1,0 +1,29 @@
+.info-card {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card-actions {
+  padding: 1rem;
+}
+
+button {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
