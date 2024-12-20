@@ -13,6 +13,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { CarteNationalComponent } from './components/dashboard/carte-national/carte-national.component';
 import { UploadComponent } from './components/dashboard/upload/upload.component';
 import { CardComponent } from './components/card/card.component';
+import { ClientDataComponent } from './components/dashboard/client-data/client-data.component';
 
 // export const routes: Routes = [
 //   {
@@ -76,4 +77,5 @@ export const routes: Routes = [
   { path: 'dashboard/carte-national', component: CarteNationalComponent },
   { path: 'dashboard/upload', component: UploadComponent },
   { path: 'dashboard/card', component: CardComponent },
+  { path: 'dashboard/clients', component: ClientDataComponent },
 ];

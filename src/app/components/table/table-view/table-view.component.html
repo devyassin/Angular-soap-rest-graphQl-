@@ -1,0 +1,50 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white">
+    <thead class="bg-gray-100">
+      <tr>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Photo
+        </th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Full Name
+        </th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          First Name
+        </th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Date of Birth
+        </th>
+        <th
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+        >
+          Place of Birth
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      @for (item of data; track item.fullName) {
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <img
+            [src]="item.photoUrl"
+            alt="Profile"
+            class="h-10 w-10 rounded-full"
+          />
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ item.fullName }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ item.firstName }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ item.dateOfBirth }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ item.placeOfBirth }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
