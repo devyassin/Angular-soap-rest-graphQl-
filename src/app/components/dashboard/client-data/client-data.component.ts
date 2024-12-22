@@ -24,6 +24,9 @@ export class ClientDataComponent {
     idNumber: '',
     expiryDate: '',
     photoUrl: '',
+    filePath: '',
+    imageUrl: '',
+    fileUrl: '',
   };
 
   constructor(private cinCardService: CinCardService) {}
@@ -52,11 +55,41 @@ export class ClientDataComponent {
 
   fetchCinCards(): void {
     this.cinCardService.getAllCinCards().subscribe({
-      next: (data) => (this.data = data),
+      next: async (data: IdCardData[]) => {
+        // Create a new array with resolved promises
+        const processedData = await Promise.all(
+          data.map(async (card) => {
+            const processedCard: IdCardData = {
+              ...card,
+              imageUrl: card.photoUrl
+                ? await this.loadImage(card.photoUrl)
+                : undefined,
+              fileUrl: card.filePath
+                ? await this.loadImage(card.filePath)
+                : undefined,
+            };
+            return processedCard;
+          })
+        );
+
+        // Now assign the processed data with resolved promises
+        this.data = processedData;
+      },
       error: (err) => console.error('Failed to fetch Cin Cards:', err),
     });
   }
-
+  private loadImage(fileName: string): Promise<string> {
+    return new Promise((resolve) => {
+      this.cinCardService.getImage(fileName).subscribe({
+        next: (blob) => {
+          resolve(URL.createObjectURL(blob));
+        },
+        error: () => {
+          resolve('');
+        },
+      });
+    });
+  }
   /**
    * Add a new Cin Card
    */

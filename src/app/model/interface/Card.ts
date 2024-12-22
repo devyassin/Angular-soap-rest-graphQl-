@@ -6,7 +6,10 @@ export interface IdCardData {
   dateOfBirth: string;
   placeOfBirth: string;
   idNumber: string;
-  expiryDate: string;
+  expiryDate?: string;
   photoUrl: string;
+  filePath?: string;
   validator?: User;
+  imageUrl?: string;
+  fileUrl?: string;
 }

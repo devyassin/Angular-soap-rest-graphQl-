@@ -2,19 +2,24 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ExtractedFormComponent } from '../../ui/extracted-form/extracted-form.component';
-import { ExtractedInfo } from '../../../model/interface/ExtractedInfo';
 import { FileUploadZoneComponent } from '../../ui/file-upload-zone/file-upload-zone.component';
 import { IdCardData } from '../../../model/interface/Card';
+import { ToastrService } from 'ngx-toastr';
+import { OcrService } from '../../../services/ocr.service';
+import dayjs from 'dayjs';
+import { CinCardService } from '../../../services/cin-card.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
   standalone: true,
   imports: [CommonModule, FileUploadZoneComponent, ExtractedFormComponent],
   templateUrl: './upload.component.html',
-  styleUrl: './upload.component.css',
+  styleUrls: ['./upload.component.css'], // Corrected property name
 })
 export class UploadComponent {
   selectedFile: File | null = null;
+  filePath: string = '';
   extractedInfo: IdCardData = {
     fullName: '',
     firstName: '',
@@ -22,12 +27,38 @@ export class UploadComponent {
     placeOfBirth: '',
     idNumber: '',
     expiryDate: '',
-    photoUrl: '', // Excluded in the display logic but included for clarity
+    photoUrl: '',
+    filePath: '',
+    imageUrl: '',
   };
+
+  isLoading: boolean = false;
+
+  constructor(
+    private ocrService: OcrService,
+    private toastr: ToastrService,
+    private cinCardService: CinCardService,
+    private router: Router
+  ) {}
+
+  uploadFile(file: File): void {
+    if (file) {
+      this.cinCardService.uploadFile(file).subscribe({
+        next: (filePath) => {
+          console.log('File uploaded successfully. URL:', filePath);
+          this.filePath = filePath;
+          this.toastr.success('File uploaded successfully!');
+        },
+        error: (err) => {
+          this.toastr.success('File uploaded failed!');
+        },
+      });
+    }
+    console.log(this.extractedInfo);
+  }
 
   handleFile(file: File) {
     if (file.size > 10 * 1024 * 1024) {
-      // 10MB limit
       alert('File is too large. Maximum size is 10MB.');
       return;
     }
@@ -44,8 +75,30 @@ export class UploadComponent {
     }
 
     this.selectedFile = file;
-    // Here you would typically start the OCR process
-    // and update the extractedInfo object with the results
+    this.extractInformations();
+    this.uploadFile(file);
+  }
+
+  extractInformations() {
+    if (!this.selectedFile) {
+      alert('No file selected!');
+      return;
+    }
+
+    this.isLoading = true;
+
+    this.ocrService.processCinFile(this.selectedFile).subscribe({
+      next: (data: IdCardData) => {
+        this.extractedInfo = data;
+        this.toastr.success('File processed successfully!');
+        this.isLoading = false;
+        console.log(data);
+      },
+      error: () => {
+        this.toastr.error('Failed to process the file. Please try again.');
+        this.isLoading = false;
+      },
+    });
   }
 
   resetForm() {
@@ -58,6 +111,7 @@ export class UploadComponent {
       idNumber: '',
       expiryDate: '',
       photoUrl: '',
+      filePath: '',
     };
   }
 
@@ -67,10 +121,16 @@ export class UploadComponent {
       return;
     }
 
-    console.log('Submitting form with data:', {
-      file: this.selectedFile,
-      info,
-    });
-    // Here you would typically send the data to your backend
+    info.filePath = this.filePath;
+    console.log(info);
+    this.cinCardService.createCinCard(info).subscribe(
+      (response) => {
+        this.toastr.success('CIN Card successfully created!');
+        this.router.navigate(['/dashboard/cards']);
+      },
+      (error) => {
+        this.toastr.error('Error while creating CIN Card!');
+      }
+    );
   }
 }

@@ -9,6 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingButtonComponent } from '../../../shared/buttons/app-loading-button/app-loading-button.component';
 import { routes } from '../../../app.routes';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,11 @@ export class LoginComponent {
   formData = { email: '', password: '' };
   showPassword = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   onSubmit(): void {
     if (!this.formData.email || !this.formData.password) {
@@ -41,9 +46,12 @@ export class LoginComponent {
     this.authService.login(this.formData).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/dashboard/carte-national']);
+        this.toastr.success('Welcome!');
+        this.router.navigate(['/dashboard/upload']);
       },
-      error: (err) => console.error('Login failed', err),
+      error: (err) => {
+        this.toastr.error('Login Faild !');
+      },
     });
   }
 

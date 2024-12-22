@@ -7,13 +7,13 @@
         class="relative w-32 h-32 rounded-full overflow-hidden border-2 border-gray-300"
       >
         <img
-          *ngIf="info.photoUrl"
-          [src]="info.photoUrl"
+          *ngIf="info.imageUrl"
+          [src]="info.imageUrl"
           alt="Avatar"
           class="object-cover w-full h-full"
         />
         <div
-          *ngIf="!info.photoUrl"
+          *ngIf="!info.imageUrl"
           class="flex items-center justify-center w-full h-full bg-gray-100 text-gray-500"
         >
           <svg
@@ -79,8 +79,9 @@
         Date of Birth
       </label>
       <input
-        type="date"
+        type="text"
         id="dateOfBirth"
+        placeholder="Enter date of birth"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
         [(ngModel)]="info.dateOfBirth"
       />
@@ -120,7 +121,8 @@
         Expiry Date
       </label>
       <input
-        type="date"
+        type="text"
+        placeholder="Enter expiration date"
         id="expiryDate"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
         [(ngModel)]="info.expiryDate"

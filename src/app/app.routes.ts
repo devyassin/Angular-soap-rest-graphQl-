@@ -77,5 +77,5 @@ export const routes: Routes = [
   { path: 'dashboard/carte-national', component: CarteNationalComponent },
   { path: 'dashboard/upload', component: UploadComponent },
   { path: 'dashboard/card', component: CardComponent },
-  { path: 'dashboard/clients', component: ClientDataComponent },
+  { path: 'dashboard/cards', component: ClientDataComponent },
 ];

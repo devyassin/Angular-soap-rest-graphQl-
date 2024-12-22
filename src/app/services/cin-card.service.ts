@@ -5,18 +5,17 @@ import { IdCardData } from '../model/interface/Card';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CinCardService {
-
   private apiUrl = `${environment.API_OCR}/cinCards`;
 
   constructor(private http: HttpClient) {}
 
-   /**
+  /**
    * Fetch all Cin Cards
    */
-   getAllCinCards(): Observable<IdCardData[]> {
+  getAllCinCards(): Observable<IdCardData[]> {
     return this.http.get<IdCardData[]>(this.apiUrl);
   }
 
@@ -51,5 +50,28 @@ export class CinCardService {
    */
   deleteCinCard(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  /**
+   * Upload a file
+   * @param file - File to upload
+   * @returns Observable<string> - URL of the uploaded file
+   */
+  uploadFile(file: File): Observable<string> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(this.apiUrl + '/upload_pic', formData, {
+      responseType: 'text', 
+    });
+  }
+
+   /**
+   * Fetch an image by fileName
+   * @param fileName - Name of the image file
+   * @returns Observable<Blob> - Image as a Blob
+   */
+   getImage(fileName: string): Observable<Blob> {
+    const url = `${this.apiUrl}/photos/${fileName}`;
+    return this.http.get(url, { responseType: 'blob' });
   }
 }

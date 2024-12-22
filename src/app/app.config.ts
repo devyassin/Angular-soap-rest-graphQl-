@@ -12,6 +12,7 @@ import { HttpLink } from 'apollo-angular/http'; // Apollo's HttpLink for connect
 import { routes } from './app.routes';
 import { environment } from '../environments/environment.development';
 import { authInterceptor } from './services/auth-interceptor.service';
+import { provideToastr } from 'ngx-toastr';
 
 export function apolloOptionsFactory(): ApolloClientOptions<any> {
   const httpLink = inject(HttpLink);
@@ -34,6 +35,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimations(),
+    provideToastr(),
     graphqlProvider,
   ],
 };
