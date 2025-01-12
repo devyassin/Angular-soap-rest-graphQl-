@@ -1,0 +1,104 @@
+<div class="max-w-5xl mx-auto p-8">
+  <div class="bg-white shadow-lg rounded-xl p-10 md:p-12 lg:p-14 space-y-8">
+    <!-- Display the CIN Card ID -->
+    <h2 class="text-3xl font-semibold text-gray-900">Update CIN {{ cinCardData?.idNumber }}</h2>
+
+    <!-- Form Grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <!-- Full Name -->
+      <div class="space-y-2">
+        <label for="fullName" class="block text-sm font-medium text-gray-700">
+          Full Name
+        </label>
+        <input
+          type="text"
+          id="fullName"
+          [(ngModel)]="cinCardData!.fullName"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+          placeholder="Enter full name"
+        />
+      </div>
+
+      <!-- First Name -->
+      <div class="space-y-2">
+        <label for="firstName" class="block text-sm font-medium text-gray-700">
+          First Name
+        </label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="cinCardData!.firstName"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+          placeholder="Enter first name"
+        />
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="space-y-2">
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">
+          Date of Birth
+        </label>
+        <input
+          type="text"
+          id="dateOfBirth"
+          [(ngModel)]="cinCardData!.dateOfBirth"
+          placeholder="Enter date of birth"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+        />
+      </div>
+
+      <!-- Place of Birth -->
+      <div class="space-y-2">
+        <label for="placeOfBirth" class="block text-sm font-medium text-gray-700">
+          Place of Birth
+        </label>
+        <input
+          type="text"
+          id="placeOfBirth"
+          [(ngModel)]="cinCardData!.placeOfBirth"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+          placeholder="Enter place of birth"
+        />
+      </div>
+
+      <!-- ID Number -->
+      <div class="space-y-2">
+        <label for="idNumber" class="block text-sm font-medium text-gray-700">
+          ID Number
+        </label>
+        <input
+          type="text"
+          id="idNumber"
+          [(ngModel)]="cinCardData!.idNumber"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+          placeholder="Enter ID number"
+        />
+      </div>
+
+      <!-- Expiry Date -->
+      <div class="space-y-2">
+        <label for="expiryDate" class="block text-sm font-medium text-gray-700">
+          Expiry Date
+        </label>
+        <input
+          type="text"
+          id="expiryDate"
+          [(ngModel)]="cinCardData!.expiryDate"
+          placeholder="Enter expiration date"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+        />
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <div class="mt-10 flex justify-end space-x-4">
+      <button
+        type="button"
+        (click)="updateCinCard()" 
+        class="px-6 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>

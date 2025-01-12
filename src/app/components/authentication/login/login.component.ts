@@ -42,7 +42,7 @@ export class LoginComponent {
       alert('Please fill in all fields.');
       return;
     }
-
+    this.toastr.info('login ...', 'Login');
     this.authService.login(this.formData).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);

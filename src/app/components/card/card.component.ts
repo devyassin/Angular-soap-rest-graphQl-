@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IdCardData } from '../../model/interface/Card';
 import { IdCardComponent } from './id-card/id-card.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CinCardService } from '../../services/cin-card.service';
 
 @Component({
   selector: 'app-card',
@@ -12,20 +14,50 @@ import { IdCardComponent } from './id-card/id-card.component';
 export class CardComponent implements OnInit {
   idCardData!: IdCardData;
 
-  // This method is executed when the component is initialized
-  ngOnInit(): void {
-    this.idCardData = {
-      fullName: 'EL ALAMI',
-      firstName: 'ZAINEB',
-      dateOfBirth: '05/12/1983',
-      placeOfBirth: 'OUARZAZATE',
-      idNumber: 'U1234567',
-      expiryDate: '22/07/2029',
-      photoUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=256',
-    };
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private idCardService: CinCardService
+  ) {}
 
-    // You can perform any additional logic here, for example:
-    console.log('CardComponent initialized', this.idCardData);
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      const id = parseInt(params['id'], 10);
+      this.fetchCardData(id);
+    });
+    console.log(this.idCardData);
+  }
+
+  private fetchCardData(id: number): void {
+    this.idCardService.getCinCardById(id).subscribe({
+      next: async (data: IdCardData) => {
+        const processedCard: IdCardData = {
+          ...data,
+          imageUrl: data.photoUrl
+            ? await this.loadImage(data.photoUrl)
+            : undefined,
+          fileUrl: data.filePath
+            ? await this.loadImage(data.filePath)
+            : undefined,
+        };
+        this.idCardData = processedCard;
+      },
+      error: (error) => {
+        console.error('Error fetching card data:', error);
+      },
+    });
+  }
+
+  private loadImage(fileName: string): Promise<string> {
+    return new Promise((resolve) => {
+      this.idCardService.getImage(fileName).subscribe({
+        next: (blob) => {
+          resolve(URL.createObjectURL(blob));
+        },
+        error: () => {
+          resolve('');
+        },
+      });
+    });
   }
 }

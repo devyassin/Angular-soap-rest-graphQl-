@@ -14,6 +14,8 @@ import { CarteNationalComponent } from './components/dashboard/carte-national/ca
 import { UploadComponent } from './components/dashboard/upload/upload.component';
 import { CardComponent } from './components/card/card.component';
 import { ClientDataComponent } from './components/dashboard/client-data/client-data.component';
+import { UpdateCinComponent } from './components/dashboard/update-cin/update-cin.component';
+import { StatsComponent } from './components/dashboard/stats/stats.component';
 
 // export const routes: Routes = [
 //   {
@@ -76,6 +78,8 @@ export const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'dashboard/carte-national', component: CarteNationalComponent },
   { path: 'dashboard/upload', component: UploadComponent },
-  { path: 'dashboard/card', component: CardComponent },
+  { path: 'dashboard/cards/:id', component: CardComponent },
   { path: 'dashboard/cards', component: ClientDataComponent },
+  { path: 'dashboard/stats', component: StatsComponent },
+  { path: 'dashboard/update_cin/:id', component: UpdateCinComponent }
 ];

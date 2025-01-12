@@ -13,7 +13,7 @@ import { CinCardService } from '../../../services/cin-card.service';
   styleUrl: './client-data.component.css',
 })
 export class ClientDataComponent {
-  showTable = true;
+  showTable = false;
   data: IdCardData[] = [];
   filteredData: IdCardData[] = [];
   newCard: IdCardData = {

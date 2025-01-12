@@ -74,4 +74,13 @@ export class CinCardService {
     const url = `${this.apiUrl}/photos/${fileName}`;
     return this.http.get(url, { responseType: 'blob' });
   }
+
+  /**
+   * Partially update an existing Cin Card
+   * @param id - Cin Card ID
+   * @param updates - Partial updates for Cin Card Data
+   */
+  patchCinCard(id: number, updates: Partial<IdCardData>): Observable<IdCardData> {
+    return this.http.patch<IdCardData>(`${this.apiUrl}/${id}`, updates);
+  }
 }

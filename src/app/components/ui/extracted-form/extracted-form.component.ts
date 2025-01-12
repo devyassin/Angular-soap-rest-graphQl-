@@ -38,6 +38,8 @@ export class ExtractedFormComponent {
     imageUrl: '',
   };
 
+  @Input() mode: 'add' | 'update' = 'add'; // Add mode input
+
   @Output() onReset = new EventEmitter<void>();
   @Output() onSubmit = new EventEmitter<IdCardData>();
 
@@ -47,7 +49,7 @@ export class ExtractedFormComponent {
       this.cinCardService.uploadFile(file).subscribe({
         next: (fileName) => {
           this.info.photoUrl = fileName;
-          this.fetchImage(fileName); // Fetch the image after uploading
+          this.fetchImage(fileName);
           this.toastr.success('Image uploaded successfully!');
         },
         error: (err) => {
@@ -61,7 +63,7 @@ export class ExtractedFormComponent {
     this.cinCardService.getImage(fileName).subscribe({
       next: (blob) => {
         const url = URL.createObjectURL(blob);
-        this.info.imageUrl = url; // Set the fetched image URL
+        this.info.imageUrl = url;
         this.toastr.success('Image fetched successfully!');
       },
       error: (err) => {
