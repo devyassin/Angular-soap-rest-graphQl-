@@ -1,0 +1,21 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold mb-4">ID Card Information</h1>
+      <app-data-filter (search)="onSearch($event)"></app-data-filter>
+      
+      <div class="mb-4">
+        <button 
+          (click)="toggleView()"
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Switch to {{ showTable ? 'Card' : 'Table' }} View
+        </button>
+      </div>
+    </div>
+
+    @if (showTable) {
+      <app-table-view [data]="data"></app-table-view>
+    } @else {
+      <app-card-view [data]="data"></app-card-view>
+    }
+  </div>

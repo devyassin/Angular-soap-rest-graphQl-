@@ -1,0 +1,47 @@
+<div class="w-full pl-6 space-y-4">
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs text-gray-600">Nom / الإسم العائلي</p>
+      <p class="text-sm font-semibold">
+        {{ data.fullName }}
+      </p>
+    </div>
+    <div>
+      <p class="text-xs text-gray-600">Prénom / الإسم الشخصي</p>
+      <p class="text-sm font-semibold">
+        {{ data.firstName }}
+      </p>
+    </div>
+    <div>
+      <p class="text-xs text-gray-600">Date de naissance / تاريخ الازدياد</p>
+      <p class="text-sm font-semibold">
+        {{ data.dateOfBirth }}
+      </p>
+    </div>
+    <div>
+      <p class="text-xs text-gray-600">Lieu / مكان الازدياد</p>
+      <p class="text-sm font-semibold">
+        {{ data.placeOfBirth }}
+      </p>
+    </div>
+  </div>
+
+  <div class="pt-6">
+    <div class="flex justify-between items-center">
+      <div>
+        <p class="text-xs text-gray-600">N° / رقم</p>
+        <p class="text-sm font-mono font-semibold">
+          {{ data.idNumber }}
+        </p>
+      </div>
+      @if (data.expiryDate) {
+      <div class="text-right">
+        <p class="text-xs text-gray-600">Valable jusqu'au / صالحة إلى غاية</p>
+        <p class="text-sm font-semibold">
+          {{ data.expiryDate }}
+        </p>
+      </div>
+      }
+    </div>
+  </div>
+</div>

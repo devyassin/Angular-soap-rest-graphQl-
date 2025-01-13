@@ -1,0 +1,71 @@
+<div
+  class="relative border-2 border-dashed border-gray-300 rounded-xl p-12 text-center transition-all duration-200 ease-in-out mb-8 bg-gradient-to-b from-white to-gray-50 group hover:border-indigo-500 hover:bg-gradient-to-b hover:from-indigo-50 hover:to-white"
+  [class.border-indigo-500]="isDragging"
+  [class.from-indigo-50]="isDragging"
+  [class.to-white]="isDragging"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+>
+  <div class="space-y-6">
+    <div class="flex justify-center">
+      <div class="relative">
+        <svg
+          class="h-20 w-20 text-gray-400 group-hover:text-indigo-500 transition-colors duration-200"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          />
+        </svg>
+        <div
+          class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        >
+          <div
+            class="w-14 h-14 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <div class="text-gray-600">
+        <label for="file-upload" class="relative cursor-pointer">
+          <span class="text-indigo-600 font-medium hover:text-indigo-700"
+            >Upload a file</span
+          >
+          <span class="text-gray-500"> or drag and drop</span>
+          <input
+            id="file-upload"
+            type="file"
+            class="sr-only"
+            (change)="onFileSelected($event)"
+            accept=".pdf,.png,.jpg,.jpeg"
+          />
+        </label>
+      </div>
+      <p class="text-sm text-gray-500">PDF, PNG, JPG up to 10MB</p>
+    </div>
+  </div>
+
+  @if (selectedFile) {
+  <div class="absolute top-2 right-2">
+    <div
+      class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center"
+    >
+      <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      {{ selectedFile.name }}
+    </div>
+  </div>
+  }
+</div>
