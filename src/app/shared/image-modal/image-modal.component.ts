@@ -1,8 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-image-modal',
   standalone: true,
+  imports: [CommonModule],
   template: `
     <div
       *ngIf="isOpen"
